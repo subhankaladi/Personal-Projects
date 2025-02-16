@@ -1,134 +1,9 @@
-// 'use client'
-// import { useState } from 'react'
-// import { motion } from 'framer-motion'
-// import toast from 'react-hot-toast'
-
-// interface Question {
-//   question: string;
-//   options: string[];
-//   correctAnswer: number;
-// }
-
-// interface QuizCardProps {
-//   quizzes: Question[];
-// }
-
-// const QuizCard = ({ quizzes }: QuizCardProps) => {
-//   const [currentQuestion, setCurrentQuestion] = useState(0)
-//   const [score, setScore] = useState(0)
-//   const [showResult, setShowResult] = useState(false)
-//   const [answers, setAnswers] = useState<boolean[]>([])
-
-//   const handleAnswer = (selectedIndex: number) => {
-//     const isCorrect = selectedIndex === quizzes[currentQuestion].correctAnswer
-    
-//     // Store the answer result
-//     const newAnswers = [...answers]
-//     newAnswers[currentQuestion] = isCorrect
-//     setAnswers(newAnswers)
-    
-//     if (isCorrect) {
-//       toast.success('Correct Answer! 🎉')
-//       setScore(score + 1)
-//     } else {
-//       const correctOption = quizzes[currentQuestion].options[quizzes[currentQuestion].correctAnswer]
-//       toast.error(`Wrong! Correct answer was: ${correctOption}`)
-//     }
-
-//     // Move to next question after delay
-//     setTimeout(() => {
-//       if (currentQuestion < quizzes.length - 1) {
-//         setCurrentQuestion(currentQuestion + 1)
-//       } else {
-//         setShowResult(true)
-//       }
-//     }, 2000)
-//   }
-
-//   if (showResult) {
-//     return (
-//       <motion.div 
-//         initial={{ opacity: 0 }}
-//         animate={{ opacity: 1 }}
-//         className="max-w-3xl mx-auto p-8 bg-white rounded-lg shadow-lg"
-//       >
-//         <h2 className="text-2xl font-bold mb-6 text-center">Quiz Results</h2>
-//         <div className="mb-6">
-//           <p className="text-xl mb-2 text-center">
-//             Final Score: {score} out of {quizzes.length}
-//           </p>
-//           <p className="text-lg text-center text-purple-600 font-semibold">
-//             Percentage: {((score / quizzes.length) * 100).toFixed(1)}%
-//           </p>
-//         </div>
-        
-//         <div className="space-y-4">
-//           {quizzes.map((q, idx) => (
-//             <div 
-//               key={idx} 
-//               className={`p-4 rounded-lg ${
-//                 answers[idx] ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'
-//               }`}
-//             >
-//               <p className="font-medium mb-2">{q.question}</p>
-//               <p className="text-sm">
-//                 Correct Answer: {q.options[q.correctAnswer]}
-//               </p>
-//               <p className={`text-sm ${answers[idx] ? 'text-green-600' : 'text-red-600'}`}>
-//                 {answers[idx] ? '✓ Correct' : '✗ Incorrect'}
-//               </p>
-//             </div>
-//           ))}
-//         </div>
-//       </motion.div>
-//     )
-//   }
-
-//   const question = quizzes[currentQuestion]
-
-//   return (
-//     <motion.div 
-//       key={currentQuestion}
-//       initial={{ opacity: 0, x: 50 }}
-//       animate={{ opacity: 1, x: 0 }}
-//       className="max-w-2xl mx-auto"
-//     >
-//       <div className="mb-4 text-center">
-//         <span className="text-sm text-gray-500">
-//           Question {currentQuestion + 1} of {quizzes.length}
-//         </span>
-//       </div>
-//       <div className="p-6 bg-white rounded-lg shadow-lg">
-//         <h2 className="text-xl font-semibold mb-4">{question.question}</h2>
-//         <div className="space-y-3">
-//           {question.options.map((option, optionIndex) => (
-//             <motion.button
-//               key={optionIndex}
-//               whileHover={{ scale: 1.02 }}
-//               whileTap={{ scale: 0.98 }}
-//               onClick={() => handleAnswer(optionIndex)}
-//               className="w-full p-4 text-left border rounded-lg hover:bg-purple-50 hover:border-purple-500 transition-colors"
-//             >
-//               {option}
-//             </motion.button>
-//           ))}
-//         </div>
-//       </div>
-//     </motion.div>
-//   )
-// }
-
-// export default QuizCard
-
-
-
-
-
 'use client'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import toast from 'react-hot-toast'
 import { client } from '@/lib/sanity'
+import { useRouter } from 'next/navigation'
 
 interface Question {
   question: string;
@@ -148,6 +23,7 @@ const QuizCard = ({ quizzes, day }: QuizCardProps) => {
   const [score, setScore] = useState(0)
   const [showResult, setShowResult] = useState(false)
   const [answers, setAnswers] = useState<boolean[]>([])
+  const router = useRouter()
 
   const handleStartQuiz = (e: { preventDefault: () => void }) => {
     e.preventDefault()
@@ -255,6 +131,16 @@ const QuizCard = ({ quizzes, day }: QuizCardProps) => {
               </p>
             </div>
           ))}
+        </div>
+
+        <div className="mt-8 text-center">
+          <p className="text-lg text-gray-700 mb-4">Want to see how you rank?</p>
+          <button
+            onClick={() => router.push('/leaderboard')}
+            className="px-4 py-2 bg-purple-600 text-white rounded-lg shadow-lg hover:bg-purple-700 transition"
+          >
+            Go to Leaderboard
+          </button>
         </div>
       </motion.div>
     )
