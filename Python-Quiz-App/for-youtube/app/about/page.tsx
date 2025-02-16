@@ -30,7 +30,7 @@ export default function About() {
             Building Future-Ready Developers
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed">
-            Hi, I'm <span className="font-semibold text-purple-600">Subhan Kaladi</span>, 
+            Hi, I am <span className="font-semibold text-purple-600">Subhan Kaladi</span>, 
             a passionate developer dedicated to helping students master Python programming 
             through interactive learning.
           </p>

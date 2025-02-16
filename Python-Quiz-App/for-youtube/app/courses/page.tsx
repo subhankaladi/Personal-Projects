@@ -1,7 +1,19 @@
-import { client } from '@/lib/sanity'
-import CourseCard from './CourseCard'
+import { client } from '@/lib/sanity';
+import CourseCard from './CourseCard';
 
-async function getCourses() {
+interface Course {
+  _id: string;
+  title: string;
+  slug: string;
+  description: string;
+  thumbnailUrl: string;
+  youtubePlaylistUrl: string;
+  duration: string;
+  difficulty: string;
+  topics: string[];
+}
+
+async function getCourses(): Promise<Course[]> {
   const query = `*[_type == "course"] {
     _id,
     title,
@@ -12,14 +24,14 @@ async function getCourses() {
     duration,
     difficulty,
     topics
-  }`
-  
-  const courses = await client.fetch(query)
-  return courses
+  }`;
+
+  const courses = await client.fetch<Course[]>(query);
+  return courses;
 }
 
 export default async function CoursesPage() {
-  const courses = await getCourses()
+  const courses = await getCourses();
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-900 to-gray-900 pt-24 px-4 pb-12">
@@ -32,13 +44,13 @@ export default async function CoursesPage() {
           TypeScript, and Frontend development - enhance your programming skills with hands-on projects 
           and practical examples.
         </p>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {courses.map((course: any) => (
+          {courses.map((course: Course) => (
             <CourseCard key={course._id} course={course} />
           ))}
         </div>
       </div>
     </div>
-  )
-} 
+  );
+}
