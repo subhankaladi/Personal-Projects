@@ -1,12 +1,11 @@
 'use client'
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { 
   Youtube, 
   Github, 
   Twitter, 
-  Mail, 
   Heart, 
   Code, 
   Coffee,
@@ -17,7 +16,6 @@ import {
   BookOpen,
   MessageCircle,
   Phone,
-  X
 } from 'lucide-react'
 import toast, { Toaster } from 'react-hot-toast'
 import { client } from '@/lib/sanity'
@@ -82,18 +80,18 @@ const Footer = () => {
   }
 
   const socialLinks = [
-    { icon: Youtube, href: '#', color: 'hover:text-red-500', label: 'YouTube' },
-    { icon: Github, href: '#', color: 'hover:text-gray-400', label: 'GitHub' },
-    { icon: Twitter, href: '#', color: 'hover:text-blue-400', label: 'Twitter' },
-    { icon: Facebook, href: '#', color: 'hover:text-blue-600', label: 'Facebook' },
-    { icon: Instagram, href: '#', color: 'hover:text-pink-500', label: 'Instagram' },
-    { icon: Linkedin, href: '#', color: 'hover:text-blue-700', label: 'LinkedIn' }
+    { icon: Youtube, href: 'https://www.youtube.com/@subhankaladi', color: 'hover:text-red-500', label: 'YouTube' },
+    { icon: Github, href: 'https://github.com/subhankaladi', color: 'hover:text-gray-400', label: 'GitHub' },
+    { icon: Twitter, href: 'https://x.com/subhankaladi15', color: 'hover:text-blue-400', label: 'Twitter' },
+    { icon: Facebook, href: 'https://www.facebook.com/subhanallahkaladi', color: 'hover:text-blue-600', label: 'Facebook' },
+    { icon: Instagram, href: 'https://www.instagram.com/subhan_kaladi/', color: 'hover:text-pink-500', label: 'Instagram' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/subhan-kaladi-6242bb31b/', color: 'hover:text-blue-700', label: 'LinkedIn' }
   ]
 
   const quickLinks = [
     { icon: BookOpen, label: 'Courses', href: '/courses' },
     { icon: MessageCircle, label: 'Community', href: '/community' },
-    { icon: Phone, label: 'Contact', href: '/contact' }
+    { icon: Phone, label: 'About', href: '/about' }
   ]
 
   return (

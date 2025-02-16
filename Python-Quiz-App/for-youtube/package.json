@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",
+    "@react-spring/web": "^9.7.5",
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^3.75.0",
+    "gsap": "^3.12.7",
     "lucide-react": "^0.475.0",
     "next": "15.1.7",
     "next-sanity": "^9.8.57",

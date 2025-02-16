@@ -38,17 +38,20 @@ export default function About() {
 
         {/* Right Image */}
         <motion.div 
-          className="flex-1"
+          className="flex-1 w-full"
           initial={{ x: 100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="relative h-[400px] w-full">
+          <div className="relative w-full min-h-[250px] sm:h-[400px]">
             <Image
               src="/subhan.png"
               alt="Subhan Kaladi"
               fill
+              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="rounded-2xl object-contain"
+              style={{ objectPosition: 'center' }}
             />
           </div>
         </motion.div>
@@ -168,7 +171,7 @@ export default function About() {
               <div>
                 <h3 className="text-xl font-semibold mb-2">Continuous Growth</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  We're constantly updating our question bank and adding new features based on 
+                  We are constantly updating our question bank and adding new features based on 
                   student feedback and industry requirements.
                 </p>
               </div>

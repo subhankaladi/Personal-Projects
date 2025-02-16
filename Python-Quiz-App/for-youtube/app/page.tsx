@@ -40,12 +40,19 @@ export default function Home() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.4 }}
+              className="flex flex-col items-center space-y-4"
             >
               <Link
-                href="/day1"
+                href="/day"
                 className="inline-flex items-center px-8 py-3 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition"
               >
                 Start Quiz <ArrowRight className="ml-2" />
+              </Link>
+              <Link
+                href="/community"
+                className="inline-flex items-center px-8 py-3 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition"
+              >
+                Go to Community <ArrowRight className="ml-2" />
               </Link>
             </motion.div>
           </div>

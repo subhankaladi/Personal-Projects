@@ -39,12 +39,12 @@ const Navbar = () => {
               <span>Quiz Days</span>
               <ChevronDown size={16} />
             </Menu.Button>
-            <Menu.Items className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 text-gray-800">
+            <Menu.Items className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 text-gray-800 max-h-[60vh] overflow-y-auto">
               {[...Array(20)].map((_, i) => (
                 <Menu.Item key={i}>
                   {({ active }) => (
                     <Link
-                      href={`/day${i + 1}`}
+                      href={`/day/${i + 1}`}
                       className={`block px-4 py-2 ${
                         active ? 'bg-purple-50 text-purple-700' : ''
                       }`}
@@ -62,6 +62,9 @@ const Navbar = () => {
           <Link href="/about" className="hover:text-purple-200 transition">
             About
           </Link>
+          <Link href="/courses" className="hover:text-purple-200 transition">
+            Courses
+          </Link>
         </div>
       </div>
 
@@ -70,18 +73,47 @@ const Navbar = () => {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden absolute top-full left-0 right-0 bg-purple-800 p-4"
+          className="md:hidden absolute top-full left-0 right-0 bg-purple-800 p-4 max-h-[80vh] overflow-y-auto"
         >
-          {[...Array(20)].map((_, i) => (
+          <div className="space-y-2">
+            {/* Quiz Days */}
+            <div className="border-b border-purple-700 pb-2 mb-2">
+              <h3 className="text-purple-200 font-semibold mb-2">Quiz Days</h3>
+              {[...Array(20)].map((_, i) => (
+                <Link
+                  key={i}
+                  href={`/day/${i + 1}`}
+                  className="block py-2 hover:text-purple-200"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Day {i + 1}
+                </Link>
+              ))}
+            </div>
+            
+            {/* Navigation Links */}
             <Link
-              key={i}
-              href={`/day${i + 1}`}
+              href="/leaderboard"
               className="block py-2 hover:text-purple-200"
               onClick={() => setIsOpen(false)}
             >
-              Day {i + 1}
+              Leaderboard
             </Link>
-          ))}
+            <Link
+              href="/about"
+              className="block py-2 hover:text-purple-200"
+              onClick={() => setIsOpen(false)}
+            >
+              About
+            </Link>
+            <Link
+              href="/courses"
+              className="block py-2 hover:text-purple-200"
+              onClick={() => setIsOpen(false)}
+            >
+              Courses
+            </Link>
+          </div>
         </motion.div>
       )}
     </motion.nav>
