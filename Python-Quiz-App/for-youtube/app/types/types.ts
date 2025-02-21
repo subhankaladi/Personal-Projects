@@ -54,3 +54,20 @@ export interface Stats {
   quizzesCompleted: number; // Ensure this field is included
   averageScore: number;
 }
+
+
+// types/Note.ts
+export interface Note {
+  _id: string;
+  title: string;
+  class: string
+  images?: {
+    _type: 'image';
+    asset: {
+      _type: 'reference';
+      _ref: string;
+    };
+  }[];
+  description: string;
+  date: string;
+}

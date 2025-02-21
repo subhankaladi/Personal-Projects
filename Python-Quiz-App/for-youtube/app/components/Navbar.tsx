@@ -65,6 +65,9 @@ const Navbar = () => {
           <Link href="/courses" className="hover:text-purple-200 transition">
             Courses
           </Link>
+          <Link href="/notes" className="hover:text-purple-200 transition">
+            Notes
+          </Link>
         </div>
       </div>
 
@@ -112,6 +115,13 @@ const Navbar = () => {
               onClick={() => setIsOpen(false)}
             >
               Courses
+            </Link>
+            <Link
+              href="/notes"
+              className="block py-2 hover:text-purple-200"
+              onClick={() => setIsOpen(false)}
+            >
+              Notes
             </Link>
           </div>
         </motion.div>
