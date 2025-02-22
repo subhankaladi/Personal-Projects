@@ -8,7 +8,7 @@ import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import Modal from "react-modal";
 import { FcCalendar } from "react-icons/fc";
-import { GiNotebook } from "react-icons/gi";
+// import { GiNotebook } from "react-icons/gi";
 
 
 

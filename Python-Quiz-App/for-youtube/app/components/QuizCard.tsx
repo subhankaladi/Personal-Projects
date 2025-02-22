@@ -22,7 +22,7 @@ const QuizCard = ({ quizzes, day }: QuizCardProps) => {
   const [currentQuizIndex, setCurrentQuizIndex] = useState(0)
   const [score, setScore] = useState(0)
   const [showResult, setShowResult] = useState(false)
-  const [answers, setAnswers] = useState<boolean[]>([])
+  const [answers, setAnswers] = useState<{ selected: number, isCorrect: boolean }[]>([])
   const router = useRouter()
 
   const handleStartQuiz = (e: { preventDefault: () => void }) => {
@@ -49,7 +49,7 @@ const QuizCard = ({ quizzes, day }: QuizCardProps) => {
 
     // Store the answer result
     const newAnswers = [...answers]
-    newAnswers[currentQuizIndex] = isCorrect
+    newAnswers[currentQuizIndex] = { selected: selectedIndex, isCorrect }
     setAnswers(newAnswers)
 
     if (isCorrect) {
@@ -119,15 +119,18 @@ const QuizCard = ({ quizzes, day }: QuizCardProps) => {
             <div
               key={idx}
               className={`p-4 rounded-lg ${
-                answers[idx] ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'
+                answers[idx]?.isCorrect ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'
               }`}
             >
               <p className="font-medium mb-2">{q.question}</p>
               <p className="text-sm">
                 Correct Answer: {q.options[q.correctAnswer]}
               </p>
-              <p className={`text-sm ${answers[idx] ? 'text-green-600' : 'text-red-600'}`}>
-                {answers[idx] ? '✓ Correct' : '✗ Incorrect'}
+              <p className={`text-sm ${answers[idx]?.isCorrect ? 'text-green-600' : 'text-red-600'}`}>
+                {answers[idx]?.isCorrect ? '✓ Correct' : '✗ Incorrect'}
+              </p>
+              <p className="text-sm text-gray-600">
+                Your Answer: {q.options[answers[idx]?.selected]}
               </p>
             </div>
           ))}
