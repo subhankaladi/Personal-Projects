@@ -269,7 +269,7 @@ const Quiz: React.FC = () => {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-blue-100 to-white">
+    <div className="flex items-center mt-20 justify-center min-h-screen ">
       <motion.div
         className="max-w-2xl w-full bg-white p-8 rounded-lg shadow-lg"
         initial={{ opacity: 0, y: 50 }}
