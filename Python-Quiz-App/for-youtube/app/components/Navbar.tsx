@@ -56,6 +56,33 @@ const Navbar = () => {
               ))}
             </Menu.Items>
           </Menu>
+          <Menu as="div" className="relative">
+            <Menu.Button className="flex items-center space-x-1 px-4 py-2 rounded-lg hover:bg-white/10 transition">
+              <span>Quizzes</span>
+              <ChevronDown size={16} />
+            </Menu.Button>
+            <Menu.Items className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 text-gray-800 max-h-[60vh] overflow-y-auto">
+              {['Basic', 'Intermediate', 'Advanced'].map((type) => (
+                <div key={type} className="border-b border-gray-200">
+                  <h3 className="px-4 py-2 font-semibold">{type}</h3>
+                  {[...Array(5)].map((_, level) => (
+                    <Menu.Item key={level}>
+                      {({ active }) => (
+                        <Link
+                          href={`/quiz/${type.toLowerCase()}/level${level + 1}`}
+                          className={`block px-4 py-2 ${
+                            active ? 'bg-purple-50 text-purple-700' : ''
+                          }`}
+                        >
+                          Level {level + 1}
+                        </Link>
+                      )}
+                    </Menu.Item>
+                  ))}
+                </div>
+              ))}
+            </Menu.Items>
+          </Menu>
           <Link href="/leaderboard" className="hover:text-purple-200 transition">
             Leaderboard
           </Link>
