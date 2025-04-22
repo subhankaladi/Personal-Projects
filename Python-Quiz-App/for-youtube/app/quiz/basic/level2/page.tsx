@@ -208,7 +208,7 @@ const Quiz: React.FC = () => {
   if (quizCompleted) {
     const percentage = ((score / basicLevel2Questions.length) * 100).toFixed(2);
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-blue-100 to-white">
+      <div className="flex mt-20 items-center justify-center min-h-screen ">
         <motion.div
           className="max-w-3xl w-full bg-white p-8 rounded-lg shadow-lg"
           initial={{ opacity: 0, y: 50 }}
