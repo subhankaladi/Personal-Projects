@@ -92,9 +92,9 @@ const Navbar = () => {
           <Link href="/courses" className="hover:text-purple-200 transition">
             Courses
           </Link>
-          <Link href="/notes" className="hover:text-purple-200 transition">
+          {/* <Link href="/notes" className="hover:text-purple-200 transition">
             Notes
-          </Link>
+          </Link> */}
         </div>
       </div>
 
@@ -103,53 +103,84 @@ const Navbar = () => {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden absolute top-full left-0 right-0 bg-purple-800 p-4 max-h-[80vh] overflow-y-auto"
+          className="md:hidden absolute top-full left-0 right-0 bg-purple-800 p-4 max-h-[85vh] overflow-y-auto"
         >
-          <div className="space-y-2">
-            {/* Quiz Days */}
-            <div className="border-b border-purple-700 pb-2 mb-2">
-              <h3 className="text-purple-200 font-semibold mb-2">Quiz Days</h3>
-              {[...Array(20)].map((_, i) => (
+          <div className="space-y-4">
+            {/* Quizzes Section */}
+            <div className="border-b border-purple-700 pb-4">
+              <h3 className="text-purple-200 font-semibold text-lg mb-3 sticky top-0 bg-purple-800 py-2">Quizzes</h3>
+              <div className="space-y-3">
+                {['Basic', 'Intermediate', 'Advanced'].map((type) => (
+                  <div key={type} className="bg-purple-900/50 rounded-lg p-2">
+                    <h4 className="text-purple-200 font-medium mb-2 px-2">{type}</h4>
+                    <div className="grid grid-cols-3 gap-2">
+                      {[...Array(5)].map((_, level) => (
+                        <Link
+                          key={level}
+                          href={`/quiz/${type.toLowerCase()}/level${level + 1}`}
+                          className="bg-purple-700/50 hover:bg-purple-600/50 rounded px-3 py-2 text-center text-sm"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          Level {level + 1}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Quiz Days Section */}
+            <div className="border-b border-purple-700 pb-4">
+              <h3 className="text-purple-200 font-semibold text-lg mb-3 sticky top-0 bg-purple-800 py-2">Quiz Days</h3>
+              <div className="grid grid-cols-4 gap-2">
+                {[...Array(20)].map((_, i) => (
+                  <Link
+                    key={i}
+                    href={`/day/${i + 1}`}
+                    className="bg-purple-700/50 hover:bg-purple-600/50 rounded px-3 py-2 text-center"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Day {i + 1}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Navigation Links */}
+            <div className="pt-2">
+              <h3 className="text-purple-200 font-semibold text-lg mb-3 sticky top-0 bg-purple-800 py-2">Navigation</h3>
+              <div className="grid grid-cols-2 gap-2">
                 <Link
-                  key={i}
-                  href={`/day/${i + 1}`}
-                  className="block py-2 hover:text-purple-200"
+                  href="/leaderboard"
+                  className="bg-purple-700/50 hover:bg-purple-600/50 rounded px-4 py-3 text-center font-medium transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
-                  Day {i + 1}
+                  Leaderboard
                 </Link>
-              ))}
+                <Link
+                  href="/courses"
+                  className="bg-purple-700/50 hover:bg-purple-600/50 rounded px-4 py-3 text-center font-medium transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Courses
+                </Link>
+                <Link
+                  href="/about"
+                  className="bg-purple-700/50 hover:bg-purple-600/50 rounded px-4 py-3 text-center font-medium transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  About
+                </Link>
+                <Link
+                  href="/dashboard"
+                  className="bg-purple-700/50 hover:bg-purple-600/50 rounded px-4 py-3 text-center font-medium transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Dashboard
+                </Link>
+              </div>
             </div>
-            
-            {/* Navigation Links */}
-            <Link
-              href="/leaderboard"
-              className="block py-2 hover:text-purple-200"
-              onClick={() => setIsOpen(false)}
-            >
-              Leaderboard
-            </Link>
-            <Link
-              href="/about"
-              className="block py-2 hover:text-purple-200"
-              onClick={() => setIsOpen(false)}
-            >
-              About
-            </Link>
-            <Link
-              href="/courses"
-              className="block py-2 hover:text-purple-200"
-              onClick={() => setIsOpen(false)}
-            >
-              Courses
-            </Link>
-            <Link
-              href="/notes"
-              className="block py-2 hover:text-purple-200"
-              onClick={() => setIsOpen(false)}
-            >
-              Notes
-            </Link>
           </div>
         </motion.div>
       )}
