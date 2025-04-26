@@ -112,8 +112,8 @@ const basicLevel3Questions: Question[] = [
   {
     id: 14,
     text: "What is the output of this code?\n```python\ntext = '  hi  '\nprint(text.strip())\n```",
-    options: ["hi", "  hi  ", "hi  ", "Error"],
-    correctAnswer: "hi",
+    options: ["'hi'", "'  hi  '", "'hi  '", "Error"],
+    correctAnswer: "'hi'",
     explanation: "`text.strip()` removes leading and trailing spaces, resulting in 'hi'."
   },
   {
