@@ -49,7 +49,7 @@ from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware  # CORS ke liye import
 from service.remover import BackgroundRemover
-from service.utils import FileHandler
+# from service.utils import FileHandler
 import io
 import logging
 from PIL import Image
