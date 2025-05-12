@@ -1,6 +1,6 @@
 'use client';
 
-import { FiInfo, FiCode, FiServer, FiSettings, FiLayers } from 'react-icons/fi';
+import {  FiCode,  FiSettings, FiLayers } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 
 const DetailsSection = () => {

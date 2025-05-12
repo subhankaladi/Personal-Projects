@@ -17,10 +17,12 @@ export default function Home() {
 
   const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    processFile(file as any);
+    if (file) {
+      processFile(file);
+    }
   };
-
-  const processFile = (file: File | null) => {
+  
+  const processFile = (file: File) => {
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -62,7 +64,7 @@ export default function Home() {
       const formData = new FormData();
       formData.append('file', selectedFile);
 
-      const response = await fetch('http://127.0.0.1:8000/remove-bg', {
+      const response = await fetch('https://jubilant-vitality-production.up.railway.app/remove-bg', {
         method: 'POST',
         body: formData,
       });
